@@ -45,14 +45,12 @@ class Igra:
     def belezi_statistiko(self, dobljena_stevilka):
         pass
     
-    def je_dovolj_denarja(self, znesek_stave):
-        return (self.stanje_na_racunu - znesek_stave) >= 0
     
     def je_liha_soda(self, dobljena_stevilka):
-        if dobljena_stevilka % 2 == 0:
-            return ('Soda')
-        elif dobljena_stevilka % 2 != 0:
-            return ('Liha')
+        if int(dobljena_stevilka) % 2 == 0:
+            return ('soda')
+        elif int(dobljena_stevilka) % 2 != 0:
+            return ('liha')
         else:
             return False
 
@@ -69,8 +67,8 @@ class Igra:
         return False
         
     def stava_na_barvo(self, stavljena_stevilka=None, znesek_stave=None):
-        if stavljena_stevilka == 'rdeca' or stavljena_stevilka == 'crna':
-            dobljena_stevilka = self.vrzi_kroglico()
+        if stavljena_stevilka in self.rdeca or stavljena_stevilka in self.crna:
+            self.vrzi_kroglico()
             if self.zgodovina_barv[-1] == stavljena_stevilka:
                 self.stanje_na_racunu += 2 * float(znesek_stave)
                 return self.stanje_na_racunu
@@ -80,7 +78,7 @@ class Igra:
         return False
 
     def stava_na_sodo_liho(self, stavljena_stevilka, znesek_stave=None):
-        if stavljena_stevilka == 'Soda' or stavljena_stevilka == 'Liha':
+        if stavljena_stevilka == 'soda' or stavljena_stevilka == 'liha':
             dobljena_stevilka = self.vrzi_kroglico()
             liha_soda = self.je_liha_soda(dobljena_stevilka)
             if liha_soda == stavljena_stevilka:
@@ -91,11 +89,52 @@ class Igra:
                 return self.stanje_na_racunu
         return False
 
-        
+#class Igralec:
+    #def vzemi
+    # pass
+
+def preveri_zacetni_odgovor(odgovor):
+    if odgovor == '1':
+        return 'prvi'
+    elif odgovor == '2':
+        return 'drugi'
+    return False 
+    
+def je_dovolj_denarja(igralec, znesek_stave):
+    return (igralec.stanje_na_racunu - znesek_stave) >= 0
 
 
+def preveri_vrsto_stave(vrsta_stave):
+    if vrsta_stave == '1':
+        return 'cifra'
+    elif vrsta_stave == '2':
+        return 'barva'
+    elif vrsta_stave == '3':
+        return 'sodost'
+    return False
 
+def preveri_stavljeno_barvo(stavljena_barva):
+    if stavljena_barva == '1':
+        return 'rdeca'
+    elif stavljena_barva == '2':
+        return 'crna'
+    return False
 
+def preveri_dodatno_stavo(dodatna_stava):
+    if dodatna_stava == '1':
+        return 'dodaj'
+    elif dodatna_stava == '2':
+        return 'zacni'
+    else:
+        return False
+
+def preveri_stavljeno_sodost(stavljena_sodost):
+    if stavljena_sodost == '1':
+        return 'soda'
+    elif stavljena_sodost == '2':
+        return 'liha'
+    else:
+        return False
 
             
                 

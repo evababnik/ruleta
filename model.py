@@ -1,4 +1,36 @@
 import random
+import json
+
+GESLO_NI_PRAVILNO = 'Nepravilno geslo.'
+
+class Igralec:
+    def __init__(self, stanje_na_racunu=None, username, geslo)
+        self.username = username
+        if self.stanje_na_racunu is None:
+            self.stanje_na_racunu = 2500.0
+        else:
+            self.stanje_na_racunu = float(stanje_na_racunu) 
+        self.geslo = geslo
+    
+    def ali_se_gesli_ujemata(self, geslo):
+        if self.geslo != geslo:
+            return GESLO_NI_PRAVILNO
+    
+    def shrani_uporabnikove_podatke(self, datoteka):
+        stanje = {'username': self.username, 'geslo': self.geslo, 'podatek': self.shrani_stanje_na_racunu.podatek}
+        with open(datoteka, 'w', encoding='utf-8') as dat:
+            json.dump(stanje, dat, ensure_ascii=Fase, indent=4)
+   
+    def odpri_uporabnikove_podatke(datoteka):
+        with open(datoteka, encoding='utf-8') as dat:
+            stanje = json-load(dat)
+        username = stanje['username']
+        geslo = stanje['geslo']
+        stanje_na_racunu = Stanje_racuna(stanje['podatek'])
+        return Igralec(stanje_na_racunu, username, geslo)
+    
+class Stanje_racuna:
+
 
 class Igra:
     zelena = {0}
@@ -89,9 +121,7 @@ class Igra:
                 return self.stanje_na_racunu
         return False
 
-#class Igralec:
-    #def vzemi
-    # pass
+
 
 def preveri_zacetni_odgovor(odgovor):
     if odgovor == '1':

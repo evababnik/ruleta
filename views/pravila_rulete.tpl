@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>Pravila igre</title>
-  </head>
-  <body>
+%rebase('baza.tpl')
 
   <h1>Kaj moram vedeti preden začnem igro?</h1>
   <p>
@@ -24,5 +19,4 @@ VRSTE STAV:
    <input class="button" type="submit" value="Razumem, začni igro">
    </h2>
    </form>
-   </body>
-   </html>
+  

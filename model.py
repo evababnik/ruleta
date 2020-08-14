@@ -9,21 +9,11 @@ class Igra:
     CRNA = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}
     RDECA = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34}
 
-    def __init__(self, dobljena_stevilka=None, zgodovina=None, zgodovina_barv=None, vrsta_stave=None, stanje_na_racunu=None):
+    def __init__(self, dobljena_stevilka, zgodovina, zgodovina_barv, stanje_na_racunu):
         self.dobljena_stevilka = int(dobljena_stevilka)
-        if zgodovina is None:
-            self.zgodovina = []
-        else:
-            self.zgodovina = zgodovina
-        if vrsta_stave is None:
-            self.vrsta_stave = 'stava_na_eno_številko'
-        else:
-            self.vrsta_stave = vrsta_stave
-        self.stanje_na_racunu = float(stanje_na_racunu)
-        if zgodovina_barv is None:
-            self.zgodovina_barv = []
-        else:
-            self.zgodovina_barv = zgodovina_barv
+        self.zgodovina = zgodovina
+        self.stanje_na_racunu = stanje_na_racunu
+        self.zgodovina_barv = zgodovina_barv
         
     def __str__(self):
         return '{0}'.format(self.dobljena_stevilka)

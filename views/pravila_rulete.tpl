@@ -14,7 +14,7 @@ VRSTE STAV:
 - stava na posamezno številko
   </p>
 
-  <form action="/polog/" method="post">
+  <form action="/zacni/" method="GET">
   <h2>
    <input class="button" type="submit" value="Razumem, začni igro">
    </h2>

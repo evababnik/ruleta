@@ -2,6 +2,7 @@ import bottle
 import model
 from model import Igra
 
+igra = Igra()
 
 @bottle.get('/')
 def osnovna():
@@ -18,17 +19,13 @@ def pokazi_navodila():
 @bottle.post('/znesek_pologa/')
 def polog():
     znesek_pologa = bottle.request.forms['znesek_pologa']
-    if znesek_pologa == 0:
+    if int(znesek_pologa) == 0:
         return bottle.template('nicelna_stava.tpl')
     else:
-        znesek_pologa = model.Igra(stanje_na_racunu)
+        igra.stanje_na_racunu = znesek_pologa
         return bottle.template('znesek_stave.tpl')
-   # else:
+   #else:
         #return bottle.template('napaka_pri_vnosu.tpl')
-
-@bottle.get('/zetoni/')
-def zetoni():
-    return bottle.template('znesek_stave.tpl')
 
 @bottle.post('/znesek_stave/')
 def znesek_stave():
@@ -41,9 +38,5 @@ def preveri_stave():
     znesek_stave = bottle.request.forms['znesek_stave']
 
     
-
-        
-
-
 
 bottle.run(debug=True, reloader=True)

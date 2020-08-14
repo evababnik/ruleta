@@ -9,11 +9,20 @@ class Igra:
     CRNA = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}
     RDECA = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34}
 
-    def __init__(self, dobljena_stevilka, zgodovina, zgodovina_barv, stanje_na_racunu):
-        self.dobljena_stevilka = int(dobljena_stevilka)
-        self.zgodovina = zgodovina
+    def __init__(self, zgodovina=None, dobljena_stevilka=None, zgodovina_barv=None, stanje_na_racunu=0):
+        if dobljena_stevilka is None:
+            dobljena_stevilka = 0
+        else:
+            self.dobljena_stevilka = int(dobljena_stevilka)
+        if zgodovina is None:
+            self.zgodovina = []
+        else:
+            self.zgodovina = zgodovina
         self.stanje_na_racunu = stanje_na_racunu
-        self.zgodovina_barv = zgodovina_barv
+        if zgodovina_barv is None:
+            self.zgodovina_barv = []
+        else:
+            self.zgodovina_barv = zgodovina_barv
         
     def __str__(self):
         return '{0}'.format(self.dobljena_stevilka)
@@ -25,6 +34,9 @@ class Igra:
             self.zgodovina_barv.append('CRNA')
         else:
             self.zgodovina_barv.append('ZELENA')
+
+    def belezi_zgodovino_cifer(self):
+        return self.zgodovina
     
     def vrzi_kroglico(self):
         dobljena_stevilka = random.randint(0, 36)
@@ -33,16 +45,11 @@ class Igra:
         return dobljena_stevilka
 
     
-    
-    
-    
     def je_liha_soda(self, dobljena_stevilka):
         if int(dobljena_stevilka) % 2 == 0:
-            return ('soda')
-        elif int(dobljena_stevilka) % 2 != 0:
-            return ('liha')
+            return ('SODA')
         else:
-            return False
+            return ('LIHA')
 
         
     def stava_na_eno_številko(self, stavljena_stevilka=None, znesek_stave=None):
@@ -88,9 +95,12 @@ class Igra:
         stava_na_sodo_liho = self.stava_na_sodo_liho()
         return int(stava_na_sodo_liho) + int(stava_na_eno_številko) + int(stava_na_barvo)
     
-    def novo_stanje(self, stavljena_stevilka):
+    def novo_stanje(self):
         novo = self.koncen_rezultat()
         self.stanje_na_racunu += novo
+        return self.stanje_na_racunu
+    
+    def zacetno_stanje_na_racunu(self):
         return self.stanje_na_racunu
         
 

@@ -9,101 +9,96 @@ class Igra:
     CRNA = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}
     RDECA = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34}
 
-    def __init__(self, zgodovina=None, dobljena_stevilka=None, zgodovina_barv=None, stanje_na_racunu=0):
+    def __init__(self, dobljena_stevilka=None):
         if dobljena_stevilka is None:
             dobljena_stevilka = 0
         else:
             self.dobljena_stevilka = int(dobljena_stevilka)
-        if zgodovina is None:
-            self.zgodovina = []
-        else:
-            self.zgodovina = zgodovina
-        self.stanje_na_racunu = stanje_na_racunu
-        if zgodovina_barv is None:
-            self.zgodovina_barv = []
-        else:
-            self.zgodovina_barv = zgodovina_barv
+        self.zgodovina = []
+        self.stanje_na_racunu = 0
+        self.zgodovina_barv = []
+        self.znesek_stave = 0
         
-    def __str__(self):
-        return '{0}'.format(self.dobljena_stevilka)
     
     def belezi_barve(self, dobljena_stevilka):
-        if dobljena_stevilka in self.RDECA:
+        if dobljena_stevilka in {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34}:
             self.zgodovina_barv.append('RDECA')
-        elif dobljena_stevilka in self.CRNA:
-            self.zgodovina_barv.append('CRNA')
+        elif dobljena_stevilka in {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}:
+            self.zgodovina_barv.append("CRNA")
         else:
-            self.zgodovina_barv.append('ZELENA')
+            self.zgodovina_barv.append("ZELENA")
 
-    def belezi_zgodovino_cifer(self):
-        return self.zgodovina
     
     def vrzi_kroglico(self):
         dobljena_stevilka = random.randint(0, 36)
         self.zgodovina.append(dobljena_stevilka)
-        self.zgodovina_barv(dobljena_stevilka)
+        self.zgodovina_barv.append(dobljena_stevilka)
         return dobljena_stevilka
 
-    
-    def je_liha_soda(self, dobljena_stevilka):
-        if int(dobljena_stevilka) % 2 == 0:
-            return ('SODA')
-        else:
-            return ('LIHA')
-
         
-    def stava_na_eno_številko(self, stavljena_stevilka=None, znesek_stave=None):
-        if int(stavljena_stevilka) <= 36 and int(stavljena_stevilka) >= 0:
-            dobljena_stevilka = self.vrzi_kroglico()
-            if dobljena_stevilka == int(stavljena_stevilka):
-                self.stanje_na_racunu += 36 * float(znesek_stave)
-                return self.stanje_na_racunu
-            else:
-                self.stanje_na_racunu -= float(znesek_stave)
-                return self.stanje_na_racunu
-        else:
-            return 0
+    def stava_na_eno_številko(self, stavljene_stevilke):
+        for stava in stavljene_stevilke:
+            if int(stava) <= 36 and int(stava) >= 0:
+                if self.dobljena_stevilka == int(stava):
+                    return 36 * float(self.znesek_stave)
+                else:
+                    return (-1) * float(self.znesek_stave)
+        return 0
         
-    def stava_na_barvo(self, stavljena_stevilka=None, znesek_stave=None):
-        if stavljena_stevilka == 'RDECA' or stavljena_stevilka == 'CRNA':
-            self.vrzi_kroglico()
-            if self.zgodovina_barv[-1] == stavljena_stevilka:
-                self.stanje_na_racunu += 2 * float(znesek_stave)
-                return self.stanje_na_racunu
-            else:
-                self.stanje_na_racunu -= float(znesek_stave)
-                return self.stanje_na_racunu 
-        else:
-            return 0
+    def stava_na_barvo(self, stavljene_stevilke):
+        for stava in stavljene_stevilke:
+            if int(stava) == 70 or int(stava) == 50:
+                if int(stava) == 70:
+                    if int(stava) == self.dobljena_stevilka:
+                        return 2 * float(self.znesek_stave)
+                    else:
+                        return (-1) * float(self.znesek_stave)
+                else:
+                    if int(stava) == self.dobljena_stevilka:
+                        return 2 * float(self.znesek_stave)
+                    else:
+                        return (-1) * float(self.znesek_stave)               
+        return 0
 
-    def stava_na_sodo_liho(self, stavljena_stevilka=None, znesek_stave=None):
-        if stavljena_stevilka == 'SODA' or stavljena_stevilka == 'LIHA':
-            dobljena_stevilka = self.vrzi_kroglico()
-            liha_soda = self.je_liha_soda(dobljena_stevilka)
-            if liha_soda == stavljena_stevilka:
-                self.stanje_na_racunu += 2 * float(znesek_stave)
-                return self.stanje_na_racunu
-            else:
-                self.stanje_na_racunu -= float(znesek_stave)
-                return self.stanje_na_racunu
-        else:
-            return 0
+    def stava_na_sodo_liho(self, stavljene_stevilke):
+        for stava in stavljene_stevilke:
+            if int(stava) == 40 or int(stava) == 60:
+                if int(stava) == 40:
+                    if self.dobljena_stevilka % 2 == 0:
+                        return 2 * float(self.znesek_stave)
+                    else:
+                        return (-1) * float(self.znesek_stave)
+                else:
+                    if self.dobljena_stevilka % 2 != 0:
+                        return 2 * float(self.znesek_stave)
+                    else:
+                        return (-1) * float(self.znesek_stave)
+        return 0
 
-    def koncen_rezultat(self):
-        stava_na_barvo = self.stava_na_barvo()
-        stava_na_eno_številko = self.stava_na_eno_številko()
-        stava_na_sodo_liho = self.stava_na_sodo_liho()
-        return int(stava_na_sodo_liho) + int(stava_na_eno_številko) + int(stava_na_barvo)
+    def pridobi_stevilo_stav(self, stavljene_stevilke):
+        stevilo_trenutnih_stav = 0
+        for stava in stavljene_stevilke:
+            if stava < 37 or stava >= 0 or stava == 40 or stava == 50 or stava == 60 or stava == 70:
+                stevilo_trenutnih_stav += 1
+                return stevilo_trenutnih_stav
+        return 0
+   
+    def pridobi_vrednost_trenutnih_stav(self, stavljene_stevilke):
+        return self.znesek_stave * self.pridobi_stevilo_stav(stavljene_stevilke)
+
+    def rezultat_stav(self, stavljene_stevilke):
+        self.vrzi_kroglico()
+        return int(self.stava_na_barvo(stavljene_stevilke)) + int(self.stava_na_eno_številko(stavljene_stevilke)) + int(self.stava_na_sodo_liho(stavljene_stevilke))
+        
     
-    def novo_stanje(self):
-        novo = self.koncen_rezultat()
+    def novo_stanje(self, stavljene_stevilke):
+        novo = self.rezultat_stav(stavljene_stevilke)
         self.stanje_na_racunu += novo
         return self.stanje_na_racunu
     
     def zacetno_stanje_na_racunu(self):
         return self.stanje_na_racunu
         
-
 
 
 

@@ -2,7 +2,7 @@ import bottle
 import model
 from model import Igra
 
-igra = Igra()
+igra = Igra(0)
 
 @bottle.get('/')
 def osnovna():
@@ -16,26 +16,33 @@ def zacni():
 def pokazi_navodila():
     return bottle.template('pravila_rulete.tpl')
 
-@bottle.post('/znesek_pologa/')
+@bottle.post('/polog/')
 def polog():
     znesek_pologa = bottle.request.forms['znesek_pologa']
     if int(znesek_pologa) == 0:
         return bottle.template('nicelna_stava.tpl')
     else:
         igra.stanje_na_racunu = znesek_pologa
-        return bottle.template('znesek_stave.tpl')
+        return bottle.template('znesek_stave')
    #else:
         #return bottle.template('napaka_pri_vnosu.tpl')
 
 @bottle.post('/znesek_stave/')
 def znesek_stave():
-    znesek_stave = bottle.request.forms['znesek_stave']
-    return bottle.template('igralno_polje.tpl')
+    igra.znesek_stave = bottle.request.forms['znesek_stave']
+    trenutno_stanje_na_racunu = igra.stanje_na_racunu
+    return bottle.template('igralno_polje.tpl', trenutno_stanje_na_racunu = trenutno_stanje_na_racunu)
+
+
 
 @bottle.post('/preveri_stave/')
 def preveri_stave():
-    stavljena_stevilka = bottle.request.forms['stavljena_stevilka']
-    znesek_stave = bottle.request.forms['znesek_stave']
+    stavljene_stevilke = bottle.request.forms.getall('stavljena_stevilka')
+    dobljena_stevilka = igra.vrzi_kroglico()
+    denar = igra.rezultat_stav(stavljene_stevilke)
+    return bottle.template('rezultat_stav.tpl', dobljena_stevilka = dobljena_stevilka, denar = denar)
+
+
 
     
 

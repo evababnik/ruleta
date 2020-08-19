@@ -4,5 +4,5 @@
 %if denar == 0:
     <h1>Več sreče prihodnjič!</h1>
 %else:
- <h1>Izplačalo znaša {{denar}} €.</h1>
+ <h1>Izplačilo znaša {{denar}} €.</h1>
  %end 

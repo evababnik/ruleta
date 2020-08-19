@@ -18,12 +18,12 @@ def pokazi_navodila():
 @bottle.post('/polog/')
 def polog0():
     znesek_pologa = bottle.request.forms['znesek_pologa']
-    if float(znesek_pologa) == 0:
-        return bottle.template('nicelna_stava.tpl')
-    elif model.preveri_ce_je_stevilka(znesek_pologa) == True:
-        #igra.stanje_na_racunu = znesek_pologa
-        igralec.stanje_na_racunu = float(znesek_pologa)
-        bottle.redirect('/igra/')
+    if model.preveri_ce_je_stevilka(znesek_pologa) == True:
+        if float(znesek_pologa) == 0:
+            return bottle.template('nicelna_stava.tpl')
+        else:
+            igralec.stanje_na_racunu = float(znesek_pologa)
+            bottle.redirect('/igra/')
     else:
         return bottle.template('napaka_pri_vnosu.tpl')
 

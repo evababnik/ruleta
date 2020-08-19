@@ -182,7 +182,6 @@ def je_dovolj_denarja(igralec, znesek_stave):
 def preveri_ce_je_stevilka(cifra):
     x = cifra
     if x.isnumeric() == True:
-        if x != 0:
             return True
     else:
         return False
@@ -202,6 +201,13 @@ class Igralec:
         else:
             return False
    
-   
+   #def prost_id_igre(self):
+       #if len(self.igre) == 0:
+        #   returm 0
+       # else:
+        #    return max(self.igre.keys()) + 1
+    
+
     def dodaj(self, dobicek):
         self.stanje_na_racunu += float(dobicek)
+        

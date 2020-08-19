@@ -1,5 +1,18 @@
-%rebase('baza.tpl')
+
 %import model
+<!DOCTYPE html>
+ <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>RULETA</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        </head>
+            <title>RULETA</title>
+        </head>
+            <body align="center">
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -87,7 +100,7 @@
     <td class="tg-b7tv"></td>
     <td class="tg-hv39" rowspan="13">
     %for cifra in zgodovina:
- <img src="../img/{{cifra}}.jpg" alt"dobljena_stevilka"width="95" height="95" >
+ <img src="../img/{{cifra}}.jpg" alt"dobljena_stevilka" width="95" height="95" >
 %end
     </td>
   </tr>
@@ -249,4 +262,9 @@
   </tr>
 </tbody>
 </table>
+
+ <div class="card-footer bg transparent border-success"> EVA BABNIK, ŠTUDIJSKO LETO 2019/20
+                    
+      </body>
+</html>
  

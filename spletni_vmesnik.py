@@ -3,6 +3,7 @@ import model
 from model import Igra, Igralec
 igra = Igra(0)
 igralec = Igralec(0)
+
 @bottle.get('/')
 def osnovna():
     return bottle.template('osnovna_stran.tpl')
@@ -28,7 +29,7 @@ def polog0():
         return bottle.template('napaka_pri_vnosu.tpl')
 
 @bottle.get('/igra/')
-def polog():   #igra.st
+def polog():   
     return bottle.template('igralno_polje.tpl', trenutno_stanje_na_racunu = igralec.stanje_na_racunu, zgodovina = igra.zgodovina)
     
 
@@ -36,16 +37,11 @@ def polog():   #igra.st
 def igra1():
     igra.znesek_stave = float(bottle.request.forms['znesek_stave'])
     stavljene_stevilke = bottle.request.forms.getall('stavljena_stevilka')
-    #igra.poslji_stave(stavljene_stevilke, znesek_stave)
-    
-   # stanje_na_racunu = igra.stanje_na_racunu
-    #dobicek  = igra.rezultat_stav(stavljene_stevilke)
     if int(igra.pridobi_vrednost_trenutnih_stav(stavljene_stevilke)) > igralec.stanje_na_racunu:
         return bottle.template('neveljavna_igra.tpl')
     else:
         dobicek = igra.poslji_stave(stavljene_stevilke)
         dobljena_stevilka = igra.zgodovina[-1]
-        igralec.dodaj(dobicek)
         igralec.znesek_stave = 0
         if igralec.stanje_na_racunu == 0:
             return bottle.template('nic_denarja.tpl', dobljena_stevilka = dobljena_stevilka, dobicek = (-1)*dobicek)

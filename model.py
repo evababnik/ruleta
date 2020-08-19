@@ -1,44 +1,12 @@
 import random
 import json
 
-
-
-class Kroglica:
-    def __init__(self, dobljena_stevilka):
-        self.dobljena_stevilka = dobljena_stevilka
-
-    def __str__(self):
-        return '{0}'.format(self.dobljena_stevilka)
-
-    def __repr__(self):
-        return '{0}'.format(self.dobljena_stevilka)
-
-
 class Igra:
-    ZELENA = {0}
-    CRNA = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}
-    RDECA = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34}
+    
 
     def __init__(self, znesek_stave):
         self.zgodovina = []
-        #self.stanje_na_racunu = float(stanje_na_racunu)
         self.znesek_stave = float(znesek_stave)
-        
-
-        
-    
-    #def belezi_barve(self, dobljena_stevilka):
-        #if dobljena_stevilka in {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34}:
-        #    self.zgodovina_barv.append('RDECA')
-        #elif dobljena_stevilka in {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}:
-          #  self.zgodovina_barv.append("CRNA")
-        #else:
-          #  self.zgodovina_barv.append("ZELENA")
-
-    
-    def vrzi_kroglico(self):
-        dobljena_stevilka = random.randint(0, 36)
-        self.zgodovina.append(dobljena_stevilka)
 
 
     def poslji_stave(self, stavljene_stevilke):
@@ -46,9 +14,6 @@ class Igra:
         self.zgodovina.append(dobljena_stevilka)
         return self.rezultat_stav(stavljene_stevilke)
         
-
-
-
         
     def stava_na_eno_številko(self, stavljene_stevilke):
         dobicek = 0
@@ -172,13 +137,11 @@ class Igra:
         dobicek = self.stava_na_barvo(stavljene_stevilke) + self.stava_na_ducat(stavljene_stevilke) + self.stava_na_polovicko(stavljene_stevilke) + self.stava_na_vrstico(stavljene_stevilke) + self.stava_na_eno_številko(stavljene_stevilke) + self.stava_na_sodo_liho(stavljene_stevilke)
         return dobicek
     
-        
-
-
 
     
 def je_dovolj_denarja(igralec, znesek_stave):
     return (igralec.stanje_na_racunu - znesek_stave) >= 0
+
 def preveri_ce_je_stevilka(cifra):
     x = cifra
     if x.isnumeric() == True:
@@ -187,27 +150,16 @@ def preveri_ce_je_stevilka(cifra):
         return False
 
 
-
 class Igralec:
     def __init__(self, znesek_pologa):
         self.stanje_na_racunu = int(znesek_pologa)
         self.znesek_stave = 0
         self.igra = Igra(self.znesek_stave)
-
-    def preveri_ce_je_dovolj_denarja(self):
-        denar = self.stanje_na_racunu
-        if denar == 0:
-            return True
-        else:
-            return False
    
-   #def prost_id_igre(self):
-       #if len(self.igre) == 0:
-        #   returm 0
-       # else:
-        #    return max(self.igre.keys()) + 1
-    
-
     def dodaj(self, dobicek):
         self.stanje_na_racunu += float(dobicek)
         
+       
+
+ 
+    

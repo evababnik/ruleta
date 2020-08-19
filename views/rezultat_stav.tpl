@@ -4,4 +4,4 @@
 <h1>Zaslužili ste {{vrednost_stav}} €. </h1>
 <form action="/igra/" method="GET">
            <button type="submit">Nadaljuj.</button>
-        </form>
+</form>

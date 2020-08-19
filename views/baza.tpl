@@ -23,10 +23,13 @@
                               </p>
 
                              </div>
-                         <div class="card-footer bg transparent border-success"> EVA BABNIK, ŠTUDIJSKO LETO 2019/20 </div>
+                         <div class="card-footer bg transparent border-success"> EVA BABNIK, ŠTUDIJSKO LETO 2019/20  <iframe src="http://free.timeanddate.com/clock/i7f8s07f/n2024/tlsi/fn17/tct/pct/ahr/tt0/tw1/tm1/tb4" frameborder="0" width="134" height="36" allowTransparency="true" align="right" ></iframe>
+
+                    </div>
                      
                    </div>
                </div>
              </div>
+     
       </body>
 </html>

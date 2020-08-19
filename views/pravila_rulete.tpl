@@ -1,7 +1,7 @@
 %rebase('baza.tpl')
 
-  <h1>Kaj moram vedeti preden začnem igro?</h1>
-  <p>
+<h1>Kaj moram vedeti preden začnem igro?</h1>
+<p>
 Kolo rulete je razdeljeno na 37 predalčkov s števili od 0 do vključno 36 - 36 jih je obravanih črno
 in rdeče, eden pa zeleno s številko 0. </p>
 <p>CILJ IGRE je ugotoviti kje bo pristala kroglica. Igralci stavijo na ustrezna polja, nato pa se kolo
@@ -15,11 +15,11 @@ in rdeče, eden pa zeleno s številko 0. </p>
 <li>stava na nizke (1-18) ali na visoke številke (19-36), 1:1</li> 
 <li>stava na eno izmed treh vrstic, 2:1</li>
 
-  </p>
+</p>
 
-  <form action="/polog/" method="GET">
+<form action="/polog/" method="GET">
   <h2>
    <button type="sumbit" class="btn btn-secondary btn-lg">Razumem, začni igro.</button>
-   </h2>
-   </form>
+  </h2>
+</form>
   

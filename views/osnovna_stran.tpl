@@ -1,5 +1,5 @@
-
 %rebase('baza.tpl')
+  
   <h1>Dobrodošli na mestu, kjer lahko z malo sreče obogatite v le nekaj minutah!</h1>
   <br>
         <form action="/pokazi_navodila/" method="GET">

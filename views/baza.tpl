@@ -23,8 +23,8 @@
                               </p>
 
                              </div>
-                         <div class="card-footer bg transparent border-success"> EVA BABNIK, ŠTUDIJSKO LETO 2019/20
-                     </div>
+                         <div class="card-footer bg transparent border-success"> EVA BABNIK, ŠTUDIJSKO LETO 2019/20 </div>
+                     
                    </div>
                </div>
              </div>

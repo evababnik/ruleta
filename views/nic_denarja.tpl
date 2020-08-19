@@ -1,6 +1,6 @@
 %rebase('baza.tpl')
  
-<h1>Padla je številka <img src="../img/{{dobljena_stevilka}}.jpg" alt="zgodovina">.</h1>
+<h1>Padla je številka <img src="../img/{{dobljena_stevilka}}.jpg" alt="zgodovina"></h1>
 <h1>Zgubili ste {{dobicek}} €. </h1>
 <h1>Na računu nimate več denarja.</h1>
 <br>

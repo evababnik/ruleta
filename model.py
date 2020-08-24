@@ -21,7 +21,7 @@ class Igra:
         for stava in stavljene_stevilke:
             if int(stava) <= 36 and int(stava) >= 0:
                 if int(self.zgodovina[-1]) == int(stava):
-                    dobicek += 36 * float(znesek_stave)
+                    dobicek += 35 * float(znesek_stave)
                 else:
                     dobicek += (-1) * float(znesek_stave)
         return dobicek
@@ -33,12 +33,12 @@ class Igra:
             if int(stava) == 41 or int(stava) == 42:
                 if int(stava) == 41:
                     if int(self.zgodovina[-1]) in range(1, 19):
-                        dobicek += 2 * float(znesek_stave)
+                        dobicek += float(znesek_stave)
                     else:
                         dobicek += (-1) * float(znesek_stave)
                 else:
                     if int(self.zgodovina[-1]) in range(19, 37):
-                        dobicek += 2 * float(znesek_stave)
+                        dobicek += float(znesek_stave)
                     else:
                         dobicek += (-1) * float(znesek_stave)
 
@@ -52,12 +52,12 @@ class Igra:
             if int(stava) == 70 or int(stava) == 50:
                 if int(stava) == 70:
                     if int(self.zgodovina[-1]) in {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34}:
-                        dobicek += 2 * float(znesek_stave)
+                        dobicek += float(znesek_stave)
                     else:
                         dobicek += (-1) * float(znesek_stave)
                 else:
                     if self.zgodovina[-1] in {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}:
-                        dobicek += 2 * float(znesek_stave)
+                        dobicek += float(znesek_stave)
                     else:
                         dobicek += (-1) * float(znesek_stave)               
         return dobicek
@@ -69,12 +69,12 @@ class Igra:
             if int(stava) == 40 or int(stava) == 60:
                 if int(stava) == 40:
                     if int(self.zgodovina[-1]) % 2 == 0:
-                        dobicek += 2 * float(znesek_stave)
+                        dobicek += float(znesek_stave)
                     else:
                         dobicek += (-1) * float(znesek_stave)
                 else:
                     if int(self.zgodovina[-1]) % 2 != 0:
-                        dobicek += 2 * float(znesek_stave)
+                        dobicek += float(znesek_stave)
                     else:
                         dobicek += (-1) * float(znesek_stave)
         return dobicek
@@ -123,6 +123,7 @@ class Igra:
                         dobicek += (-1) * float(znesek_stave)
         return dobicek    
     
+
     def pridobi_stevilo_stav(self, stavljene_stevilke):
         stevilo_trenutnih_stav = 0
         for stava in stavljene_stevilke:

@@ -1,8 +1,18 @@
 import bottle
 import model
+import random
 from model import Igra, Igralec
 igra = Igra(0)
-igralec = Igralec(0)
+
+stanja = {}
+
+def stanje_igralca():
+    st_uporabnika = bottle.request.get_cookie('st_uporabnika')
+    if st_uporabnika is None:
+        st_uporabnika = str(random.randint(0, 2 ** 45))
+        stanja[st_uporabnika] = Igralec(0)
+        bottle.response.set_cookie('st_uporabnika', st_uporabnika, path='/')
+    return stanja[st_uporabnika]
 
 @bottle.get('/')
 def osnovna():
@@ -18,6 +28,8 @@ def pokazi_navodila():
 
 @bottle.post('/polog/')
 def polog0():
+    print(stanja)
+    igralec = stanje_igralca()
     znesek_pologa = bottle.request.forms['znesek_pologa']
     if model.preveri_ce_je_stevilka(znesek_pologa) == True:
         if float(znesek_pologa) == 0:
@@ -30,11 +42,13 @@ def polog0():
 
 @bottle.get('/igra/')
 def polog():   
+    igralec = stanje_igralca()
     return bottle.template('igralno_polje.tpl', trenutno_stanje_na_racunu = igralec.stanje_na_racunu, zgodovina = igra.zgodovina)
     
 
 @bottle.post('/igra1/')
 def igra1():
+    igralec = stanje_igralca()
     igra.znesek_stave = float(bottle.request.forms['znesek_stave'])
     stavljene_stevilke = bottle.request.forms.getall('stavljena_stevilka')
     if int(igra.pridobi_vrednost_trenutnih_stav(stavljene_stevilke)) > igralec.stanje_na_racunu:
@@ -42,6 +56,7 @@ def igra1():
     else:
         dobicek = igra.poslji_stave(stavljene_stevilke)
         dobljena_stevilka = igra.zgodovina[-1]
+        
         igralec.dodaj(dobicek)
         igralec.znesek_stave = 0
         if igralec.stanje_na_racunu == 0:
@@ -62,6 +77,7 @@ def serve_pictures(picture, root='img'):
 
 @bottle.get('/izplacaj/')
 def izplacaj():
+    igralec = stanje_igralca()
     return bottle.template('izplacilo.tpl', denar = igralec.stanje_na_racunu)
 
 

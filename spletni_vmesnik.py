@@ -56,7 +56,6 @@ def igra1():
     else:
         dobicek = igra.poslji_stave(stavljene_stevilke)
         dobljena_stevilka = igra.zgodovina[-1]
-        
         igralec.dodaj(dobicek)
         igralec.znesek_stave = 0
         if igralec.stanje_na_racunu == 0:

@@ -15,7 +15,7 @@ class Igra:
         return self.rezultat_stav(stavljene_stevilke)
         
         
-    def stava_na_eno_številko(self, stavljene_stevilke):
+    def stava_na_eno_stevilko(self, stavljene_stevilke):
         dobicek = 0
         znesek_stave = self.znesek_stave
         for stava in stavljene_stevilke:
@@ -135,7 +135,7 @@ class Igra:
         return float(self.znesek_stave * self.pridobi_stevilo_stav(stavljene_stevilke))
 
     def rezultat_stav(self, stavljene_stevilke):
-        dobicek = self.stava_na_barvo(stavljene_stevilke) + self.stava_na_ducat(stavljene_stevilke) + self.stava_na_polovicko(stavljene_stevilke) + self.stava_na_vrstico(stavljene_stevilke) + self.stava_na_eno_številko(stavljene_stevilke) + self.stava_na_sodo_liho(stavljene_stevilke)
+        dobicek = self.stava_na_barvo(stavljene_stevilke) + self.stava_na_ducat(stavljene_stevilke) + self.stava_na_polovicko(stavljene_stevilke) + self.stava_na_vrstico(stavljene_stevilke) + self.stava_na_eno_stevilko(stavljene_stevilke) + self.stava_na_sodo_liho(stavljene_stevilke)
         return dobicek
     
 
